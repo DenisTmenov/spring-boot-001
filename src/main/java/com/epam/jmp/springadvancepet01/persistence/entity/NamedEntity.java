@@ -1,15 +1,10 @@
-package com.epam.jmp.springadvancepet.persistence.entity;
+package com.epam.jmp.springadvancepet01.persistence.entity;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 import lombok.Data;
 
-/**
- * Simple JavaBean domain object adds a name property to <code>BaseEntity</code>. Used as a base class for objects
- * needing these properties.
- *
- */
 @Data
 @MappedSuperclass
 public class NamedEntity extends BaseEntity {
@@ -22,4 +17,15 @@ public class NamedEntity extends BaseEntity {
         return this.getName();
     }
 
+    @Override
+    public boolean equals(Object o)
+    {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return super.hashCode();
+    }
 }
