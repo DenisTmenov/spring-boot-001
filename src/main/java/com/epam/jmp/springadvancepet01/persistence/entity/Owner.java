@@ -1,4 +1,4 @@
-package com.epam.jmp.springadvancepet.persistence.entity;
+package com.epam.jmp.springadvancepet01.persistence.entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,19 +12,17 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotEmpty;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-/**
- * Simple JavaBean domain object representing an owner.
- *
- */
 @Data
+@EqualsAndHashCode( exclude = "pets", callSuper = true)
 @Entity
 @Table(name = "owners")
 public class Owner extends Person {
@@ -62,22 +60,10 @@ public class Owner extends Person {
         pet.setOwner(this);
     }
 
-    /**
-     * Return the Pet with the given name, or null if none found for this Owner.
-     *
-     * @param name to test
-     * @return true if pet name is already in use
-     */
     public Pet getPet(String name) {
         return getPet(name, false);
     }
 
-    /**
-     * Return the Pet with the given name, or null if none found for this Owner.
-     *
-     * @param name to test
-     * @return true if pet name is already in use
-     */
     public Pet getPet(String name, boolean ignoreNew) {
         name = name.toLowerCase();
         for (Pet pet : getPetsInternal()) {
